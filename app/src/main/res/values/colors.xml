@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="grey">#ddd</color>
+    <color name="black">#000</color>
+    <!--color name="bgColor">#E6D6BD</color-->
+    >
+    <color name="white">#ffffffff</color>
+    <color name="blue">#ff0000ff</color>
+    <color name="bg_edt_txt">#25000000</color>
+    <color name="transparent">#00B6B6B6</color>
+    <color name="opacity1">#60000000</color>
+    <color name="bg_response">#42ebd801</color>
+
+
+</resources>
