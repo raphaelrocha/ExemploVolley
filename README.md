@@ -26,11 +26,11 @@ Activitys
   
   No onCrete da BaseActivity, garanta que a fila será iniciada.
   
-   @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        VolleyConnectionQueue.getINSTANCE().startQueue(this);
-    }
+    @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         VolleyConnectionQueue.getINSTANCE().startQueue(this);
+     }
     
 
   Extenda a "MainActivity" de "BaseActivity" e implemente a interface "CustomVolleyCallbackInterface"
