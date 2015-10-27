@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity implements CustomVolleyCallbackIn
     @Override
     public void onStop(){
         super.onStop();
-        //REMOVE A REQUISIÇÃO DA FILA SE A ACTIVITY FOR FECHADA
+        //REMOVE A REQUISINÇÃO DA FILA SE A ACTIVITY FOR FECHADA
         mVolleyConnection.canceRequest();
     }
 }
