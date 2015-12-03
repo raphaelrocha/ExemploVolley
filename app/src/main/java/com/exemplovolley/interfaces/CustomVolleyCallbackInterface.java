@@ -10,7 +10,7 @@ import org.json.JSONObject;
  */
 public interface CustomVolleyCallbackInterface {
 
-    /*NAO ESQUECA DE IMPLEMENTAR O METODO OnStop() COM A CHAMADA PARA MÉTODO cancelRequest NA CLASSE
+    /*NAO ESQUECA DE IMPLEMENTAR O METODO OnStop() COM A CHAMADA PARA MreÉTODO cancelRequest NA CLASSE
     *VolleyConnectionQueue,
     * Exemplo:
          @Override
@@ -22,13 +22,9 @@ public interface CustomVolleyCallbackInterface {
     */
 
     //TRATA RESPOSTAS DE SUCESSO
-    public void deliveryResponse(JSONArray response, String flag);
-
-    //TRATA RESPOSTAS DE SUCESSO
-    public void deliveryResponse(JSONObject response, String flag);
+    public void deliveryResponse(JSONArray response, String TAG);
+    public void deliveryResponse(JSONObject response, String TAG);
 
     //TRATA RESPOSTAS DE ERRO
-    public void deliveryError(VolleyError error, String flag);
-
-
+    public void deliveryError(VolleyError error, String TAG);
 }

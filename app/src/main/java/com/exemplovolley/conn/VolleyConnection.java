@@ -8,6 +8,8 @@ import com.android.volley.VolleyError;
 import com.exemplovolley.interfaces.CustomVolleyCallbackInterface;
 import com.exemplovolley.services.CustomJsonArrayRequest;
 import com.exemplovolley.services.CustomJsonObjectRequest;
+import com.google.gson.Gson;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Raphael on 20/10/2015.
+ * Created by rli on 20/10/2015.
  */
 public class VolleyConnection {
 
@@ -40,19 +42,23 @@ public class VolleyConnection {
         }
     }
 
-    //METODO PARA ENVIO E RECEBIMENTO DE JSONARRAYS
-    public void callServerApiByJsonArrayRequest(final String url, String method, String data, final String flag){
+    public void callServerApiByJsonArrayRequest(final String url, HashMap<String, String> data, final String TAG){
 
         params = new HashMap<String, String>();
-        if(data!=null){
-            params.put("data", data);
-        }
-        if(method!=null){
-            params.put("method", method);
-        }
+        Gson gson = new Gson();
+        params.put("json", gson.toJson(data));
 
         final String activityName = mCustomVolleyCallbackInterface.getClass().getSimpleName();
-        Log.i("SEND MESSAGE","["+activityName+"] url: "+url+" data: "+data);
+        Log.i("SEND MESSAGE URL","["+activityName+"] : "+url);
+        if(TAG!=null){
+            Log.i("SEND MESSAGE TAG","["+activityName+"] : "+TAG);
+        }
+        /*if(data!=null){
+            Log.i("SEND MESSAGE DATA","["+activityName+"] : "+data);
+            Log.i("SEND MESSAGE JSON", "[" + activityName + "] : " + );
+        }*/
+
+        Log.i("SEND MESSAGE PARAMS", "[" + activityName + "] : " + params.toString());
 
         CustomJsonArrayRequest request = new CustomJsonArrayRequest(Request.Method.POST,
                 url,
@@ -60,15 +66,15 @@ public class VolleyConnection {
                 new Response.Listener<JSONArray>(){
                     @Override
                     public void onResponse(JSONArray response) {
-                        //envia a resposta de sucesso para a activity
-                        mCustomVolleyCallbackInterface.deliveryResponse(response,flag);
+                        Log.i("Script", "TAG: "+TAG+" | SUCCESS: " + response);
+                        mCustomVolleyCallbackInterface.deliveryResponse(response,TAG);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //envia a mensagem de erro para a activity
-                        mCustomVolleyCallbackInterface.deliveryError(error,flag);
+                        Log.i("Script", "TAG: "+TAG+" | ERROR: " + error);
+                        mCustomVolleyCallbackInterface.deliveryError(error,TAG);
                     }
                 });
 
@@ -79,17 +85,23 @@ public class VolleyConnection {
     }
 
     //METODO PARA ENVIO E RECEBIMENTO DE JSONOBJECTS
-    public void callServerApiByJsonObjectRequest(final String url, String method, String data, final String flag){
+    public void callServerApiByJsonObjectRequest(final String url, HashMap<String, String> data, final String TAG){
 
-        Log.i("PHOTO_ACTIVITY", "ENTREI: callByJsonObjectRequest()");
-        if(data!=null) {
-            params = new HashMap<String, String>();
-            params.put("data", data);
-            params.put("method", method);
-        }
+        params = new HashMap<String, String>();
+        Gson gson = new Gson();
+        params.put("json", gson.toJson(data));
 
         final String activityName = mCustomVolleyCallbackInterface.getClass().getSimpleName();
-        Log.i("SEND MESSAGE","["+activityName+"] url: "+url+" data: "+data);
+        Log.i("SEND MESSAGE URL","["+activityName+"] : "+url);
+        if(TAG!=null){
+            Log.i("SEND MESSAGE TAG","["+activityName+"] : "+TAG);
+        }
+        /*if(data!=null){
+            Log.i("SEND MESSAGE DATA","["+activityName+"] : "+data);
+            Log.i("SEND MESSAGE JSON", "[" + activityName + "] : " + new JSONObject(data).toString());
+        }*/
+
+        Log.i("SEND MESSAGE PARAMS", "[" + activityName + "] : " + params.toString());
 
         CustomJsonObjectRequest request = new CustomJsonObjectRequest(Request.Method.POST,
                 url,
@@ -98,14 +110,16 @@ public class VolleyConnection {
                     @Override
                     public void onResponse(JSONObject response) {
                         //envia a resposta de sucesso para a activity
-                        mCustomVolleyCallbackInterface.deliveryResponse(response, flag);
+                        Log.i("Script", "TAG: "+TAG+" | SUCCESS: " + response);
+                        mCustomVolleyCallbackInterface.deliveryResponse(response, TAG);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //envia a mensagem de erro para a activity
-                        mCustomVolleyCallbackInterface.deliveryError(error, flag);
+                        Log.i("Script", "TAG: "+TAG+" | ERROR: " + error);
+                        mCustomVolleyCallbackInterface.deliveryError(error, TAG);
                     }
                 });
 
@@ -114,5 +128,4 @@ public class VolleyConnection {
         //rq.add(request);
         VolleyConnectionQueue.getINSTANCE().addQueue(request);
     }
-
 }
