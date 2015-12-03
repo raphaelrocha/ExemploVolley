@@ -54,14 +54,14 @@ Activitys
     
   Pronto, agora você pode fazer a chamada para o seu servidor a qualquer momento da seguinte maneira:
   
-     mVolleyConnection.callServerApiByJsonObjectRequest(<SERVER_URL>, <STRING_COM_O_METODO>, <STRING_DE_DADOS_NO_FORMATO_JSON>, <FLAG_PARA_CONTROLE_LOCAL>);
+     mVolleyConnection.callServerApiByJsonObjectRequest(%SERVER_URL%, %HASHMAP<STRING,STRING>%, %FLAG_PARA_CONTROLE_LOCAL%>, <FLAG_PARA_CONTROLE_LOCAL>);
      ou
-     mVolleyConnection.callServerApiByJsonArrayRequest(<SERVER_URL>, <STRING_COM_O_METODO>, <STRING_DE_DADOS_NO_FORMATO_JSON>, <FLAG_PARA_CONTROLE_LOCAL>);
+     mVolleyConnection.callServerApiByJsonArrayRequest(%SERVER_URL%, %HASHMAP<STRING,STRING>%, %FLAG_PARA_CONTROLE_LOCAL%);
      
      Lembre-se de tratar o retorno no método correto de acordo com o tipo de requisição.
      
-     callServerApiByJsonObjectRequest >> deliveryResponse(JSONObject response, String flag)
-     callServerApiByJsonArrayRequest >> deliveryResponse(JSONArray response, String flag)
+     callServerApiByJsonObjectRequest >> deliveryResponse(JSONObject response, String TAG)
+     callServerApiByJsonArrayRequest >> deliveryResponse(JSONArray response, String TAG)
      
 
   
