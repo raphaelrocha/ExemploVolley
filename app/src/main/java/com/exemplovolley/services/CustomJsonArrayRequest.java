@@ -41,7 +41,9 @@ public class CustomJsonArrayRequest extends Request<JSONArray> {
 	
 	public Map<String, String> getHeaders() throws AuthFailureError {
 		HashMap<String, String> header = new HashMap<String, String>();
-		header.put("apiKey", "Essa e minha API KEY: json array");
+		//header.put("apiKey", "Essa e minha API KEY: json array");
+		//Map<String, String> header = new HashMap<String, String>();
+		header.put("Content-Type", "application/json");
 		
 		return(header);
 	}

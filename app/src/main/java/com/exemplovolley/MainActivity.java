@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.VolleyError;
 import com.exemplovolley.conn.ServerInfo;
 import com.exemplovolley.conn.VolleyConnection;
@@ -49,12 +50,12 @@ public class MainActivity extends BaseActivity implements CustomVolleyCallbackIn
                 //String dados = mensagem.getText().toString().trim();
 
                 HashMap<String,String> params = new HashMap<String, String>();
-                params.put("method","object");
-                params.put("data",mEdit.getText().toString().trim());
+                params.put("id","object");
+                //params.put("data",mEdit.getText().toString().trim());
                 /*
                 AQUI VOCÊ FAZ A CHAMADA PARA O SERVIDOR
                 */
-                mVolleyConnection.callServerApiByJsonObjectRequest(ServerInfo.SERVER_URL, params, "MAIN_TAG");
+                mVolleyConnection.callServerApiByJsonObjectRequest(ServerInfo.SERVER_URL, Request.Method.POST, params, "MAIN_TAG");
             }
         });
 
@@ -64,12 +65,12 @@ public class MainActivity extends BaseActivity implements CustomVolleyCallbackIn
                 //String dados = mensagem.getText().toString().trim();
 
                 HashMap<String,String> params = new HashMap<String, String>();
-                params.put("method","array");
-                params.put("data",mEdit.getText().toString().trim());
+                params.put("id","array");
+                //params.put("data",mEdit.getText().toString().trim());
                 /*
                 AQUI VOCÊ FAZ A CHAMADA PARA O SERVIDOR
                 */
-                mVolleyConnection.callServerApiByJsonArrayRequest(ServerInfo.SERVER_URL, params, "main");
+                mVolleyConnection.callServerApiByJsonArrayRequest(ServerInfo.SERVER_URL, Request.Method.POST, params, "main");
             }
         });
     }

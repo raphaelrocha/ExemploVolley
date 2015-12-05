@@ -41,7 +41,8 @@ public class CustomJsonObjectRequest extends Request<JSONObject> {
 	
 	public Map<String, String> getHeaders() throws AuthFailureError {
 		HashMap<String, String> header = new HashMap<String, String>();
-		header.put("apiKey", "Essa e minha API KEY: json object");
+		//header.put("apiKey", "Essa e minha API KEY: json object");
+		header.put("Content-Type", "application/json");
 		
 		return(header);
 	}

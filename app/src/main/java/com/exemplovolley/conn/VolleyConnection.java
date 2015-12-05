@@ -42,10 +42,11 @@ public class VolleyConnection {
         }
     }
 
-    public void callServerApiByJsonArrayRequest(final String url, HashMap<String, String> data, final String TAG){
+    public void callServerApiByJsonArrayRequest(final String url, int requestMethod, HashMap<String, String> data, final String TAG){
 
         params = new HashMap<String, String>();
         Gson gson = new Gson();
+        params.put("Content-Type", "application/json");
         params.put("json", gson.toJson(data));
 
         final String activityName = mCustomVolleyCallbackInterface.getClass().getSimpleName();
@@ -59,8 +60,8 @@ public class VolleyConnection {
         }*/
 
         Log.i("SEND MESSAGE PARAMS", "[" + activityName + "] : " + params.toString());
-
-        CustomJsonArrayRequest request = new CustomJsonArrayRequest(Request.Method.POST,
+        //Request.Method.POST
+        CustomJsonArrayRequest request = new CustomJsonArrayRequest(requestMethod,
                 url,
                 params,
                 new Response.Listener<JSONArray>(){
@@ -85,7 +86,7 @@ public class VolleyConnection {
     }
 
     //METODO PARA ENVIO E RECEBIMENTO DE JSONOBJECTS
-    public void callServerApiByJsonObjectRequest(final String url, HashMap<String, String> data, final String TAG){
+    public void callServerApiByJsonObjectRequest(final String url, int requestMethod, HashMap<String, String> data, final String TAG){
 
         params = new HashMap<String, String>();
         Gson gson = new Gson();
@@ -102,8 +103,8 @@ public class VolleyConnection {
         }*/
 
         Log.i("SEND MESSAGE PARAMS", "[" + activityName + "] : " + params.toString());
-
-        CustomJsonObjectRequest request = new CustomJsonObjectRequest(Request.Method.POST,
+        //Request.Method.POST
+        CustomJsonObjectRequest request = new CustomJsonObjectRequest(requestMethod,
                 url,
                 params,
                 new Response.Listener<JSONObject>(){
