@@ -2,6 +2,7 @@ package com.exemplovolley.conn;
 
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -80,6 +81,13 @@ public class VolleyConnection {
                 });
 
         request.setTag(activityName);
+        request.setRetryPolicy(
+                new DefaultRetryPolicy(
+                        500000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                )
+        );
         this.setVolleyTag(activityName);
         //rq.add(request);
         VolleyConnectionQueue.getINSTANCE().addQueue(request);
@@ -124,8 +132,15 @@ public class VolleyConnection {
                     }
                 });
 
-        request.setTag("tagPhotoActivity");
-        this.setVolleyTag("tagPhotoActivity");
+        request.setTag(activityName);
+        request.setRetryPolicy(
+                new DefaultRetryPolicy(
+                        500000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                )
+        );
+        this.setVolleyTag(activityName);
         //rq.add(request);
         VolleyConnectionQueue.getINSTANCE().addQueue(request);
     }
