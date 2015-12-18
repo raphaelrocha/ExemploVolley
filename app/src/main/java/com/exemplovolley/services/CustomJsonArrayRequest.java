@@ -56,6 +56,7 @@ public class CustomJsonArrayRequest extends Request<JSONArray> {
 	protected Response<JSONArray> parseNetworkResponse(NetworkResponse response) {
 		try {
 			String js = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+			Log.i("HEADERS", response.headers.toString());
 			Log.i("APP", js);
 			return(Response.success(new JSONArray(js), HttpHeaderParser.parseCacheHeaders(response)));
 		}
